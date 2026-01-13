@@ -106,9 +106,7 @@ export function OverviewPage() {
         ))}
       </div>
 
-      <div className="space-y-4">
-        <h2 className="text-xl font-semibold">Snabbåtkomst</h2>
-      </div>
+      <h2 className="text-xl font-semibold">Snabbåtkomst</h2>
 
       <Link to="/checklists">
         <Card className="p-6 rounded-2xl hover:bg-accent/50 transition-colors">
