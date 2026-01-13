@@ -109,7 +109,7 @@ export function OverviewPage() {
       <h2 className="text-xl font-semibold">Snabbåtkomst</h2>
 
       <div className="space-y-4">
-        <Link to="/checklists">
+        <Link to="/checklists" className="block">
           <Card className="p-6 rounded-2xl hover:bg-accent/50 transition-colors">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-4">
@@ -124,7 +124,7 @@ export function OverviewPage() {
           </Card>
         </Link>
 
-        <Link to="/attractions">
+        <Link to="/attractions" className="block">
           <Card className="p-6 rounded-2xl hover:bg-accent/50 transition-colors">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-4">
@@ -139,7 +139,7 @@ export function OverviewPage() {
           </Card>
         </Link>
 
-        <Link to="/documents">
+        <Link to="/documents" className="block">
           <Card className="p-6 rounded-2xl hover:bg-accent/50 transition-colors">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-4">
