@@ -106,53 +106,54 @@ export function OverviewPage() {
         ))}
       </div>
 
-      <div className="space-y-6">
+      <div className="space-y-4">
         <h2 className="text-xl font-semibold">Snabbåtkomst</h2>
-        <Link to="/checklists">
-          <Card className="p-6 rounded-2xl hover:bg-accent/50 transition-colors">
-            <div className="flex items-center justify-between">
-              <div className="flex items-center gap-4">
-                <CheckSquare size={28} className="text-primary" aria-hidden="true" />
-                <div>
-                  <h3 className="font-semibold text-lg">Checklistor</h3>
-                  <p className="text-sm text-muted-foreground">Håll koll på alla att-göra</p>
-                </div>
-              </div>
-              <ArrowRight size={24} className="text-muted-foreground" aria-hidden="true" />
-            </div>
-          </Card>
-        </Link>
-
-        <Link to="/attractions">
-          <Card className="p-6 rounded-2xl hover:bg-accent/50 transition-colors">
-            <div className="flex items-center justify-between">
-              <div className="flex items-center gap-4">
-                <Search size={28} className="text-primary" aria-hidden="true" />
-                <div>
-                  <h3 className="font-semibold text-lg">Utforska attraktioner</h3>
-                  <p className="text-sm text-muted-foreground">Hitta sevärdheter nära dig</p>
-                </div>
-              </div>
-              <ArrowRight size={24} className="text-muted-foreground" aria-hidden="true" />
-            </div>
-          </Card>
-        </Link>
-
-        <Link to="/documents">
-          <Card className="p-6 rounded-2xl hover:bg-accent/50 transition-colors">
-            <div className="flex items-center justify-between">
-              <div className="flex items-center gap-4">
-                <FileText size={28} className="text-primary" aria-hidden="true" />
-                <div>
-                  <h3 className="font-semibold text-lg">Resehandlingar</h3>
-                  <p className="text-sm text-muted-foreground">Pass, biljetter och bokningar</p>
-                </div>
-              </div>
-              <ArrowRight size={24} className="text-muted-foreground" aria-hidden="true" />
-            </div>
-          </Card>
-        </Link>
       </div>
+
+      <Link to="/checklists">
+        <Card className="p-6 rounded-2xl hover:bg-accent/50 transition-colors">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-4">
+              <CheckSquare size={28} className="text-primary" aria-hidden="true" />
+              <div>
+                <h3 className="font-semibold text-lg">Checklistor</h3>
+                <p className="text-sm text-muted-foreground">Håll koll på alla att-göra</p>
+              </div>
+            </div>
+            <ArrowRight size={24} className="text-muted-foreground" aria-hidden="true" />
+          </div>
+        </Card>
+      </Link>
+
+      <Link to="/attractions">
+        <Card className="p-6 rounded-2xl hover:bg-accent/50 transition-colors">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-4">
+              <Search size={28} className="text-primary" aria-hidden="true" />
+              <div>
+                <h3 className="font-semibold text-lg">Utforska attraktioner</h3>
+                <p className="text-sm text-muted-foreground">Hitta sevärdheter nära dig</p>
+              </div>
+            </div>
+            <ArrowRight size={24} className="text-muted-foreground" aria-hidden="true" />
+          </div>
+        </Card>
+      </Link>
+
+      <Link to="/documents">
+        <Card className="p-6 rounded-2xl hover:bg-accent/50 transition-colors">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-4">
+              <FileText size={28} className="text-primary" aria-hidden="true" />
+              <div>
+                <h3 className="font-semibold text-lg">Resehandlingar</h3>
+                <p className="text-sm text-muted-foreground">Pass, biljetter och bokningar</p>
+              </div>
+            </div>
+            <ArrowRight size={24} className="text-muted-foreground" aria-hidden="true" />
+          </div>
+        </Card>
+      </Link>
     </div>
   );
 }
