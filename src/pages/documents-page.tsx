@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Document } from '@/types';
+import { useData } from '@/contexts/data-context';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { Plus, Trash2, FileText, Plane, CreditCard, Shield } from 'lucide-react';
@@ -21,23 +22,7 @@ const documentTypeLabels: Record<Document['type'], string> = {
 };
 
 export function DocumentsPage() {
-  const [documents, setDocuments] = useState<Document[]>([
-    {
-      id: '1',
-      name: 'Pass - Anna',
-      type: 'passport',
-      description: 'Giltigt till 2028',
-      familyMember: 'Anna',
-      uploadedAt: new Date(),
-    },
-    {
-      id: '2',
-      name: 'Hotellbokning Las Vegas',
-      type: 'booking',
-      description: 'Bellagio Hotel, 5 nätter',
-      uploadedAt: new Date(),
-    },
-  ]);
+  const { documents, setDocuments } = useData();
 
   const [isAdding, setIsAdding] = useState(false);
   const [newDoc, setNewDoc] = useState({
@@ -65,6 +50,7 @@ export function DocumentsPage() {
   };
 
   const handleDeleteDocument = (id: string) => {
+    if (!window.confirm('Är du säker på att du vill ta bort detta dokument?')) return;
     setDocuments(documents.filter((d) => d.id !== id));
   };
 
@@ -94,7 +80,11 @@ export function DocumentsPage() {
         <Card className="p-6 space-y-4 rounded-2xl">
           <h2 className="text-xl font-semibold">Lägg till dokument</h2>
           <div className="space-y-3">
+            <label htmlFor="doc-name" className="sr-only">
+              Dokumentnamn
+            </label>
             <input
+              id="doc-name"
               type="text"
               placeholder="Dokumentnamn..."
               value={newDoc.name}
@@ -102,7 +92,11 @@ export function DocumentsPage() {
               className="w-full px-4 py-3 rounded-xl border border-border bg-background text-lg min-h-[56px]"
               autoFocus
             />
+            <label htmlFor="doc-type" className="sr-only">
+              Dokumenttyp
+            </label>
             <select
+              id="doc-type"
               value={newDoc.type}
               onChange={(e) => setNewDoc({ ...newDoc, type: e.target.value as Document['type'] })}
               className="w-full px-4 py-3 rounded-xl border border-border bg-background min-h-[56px]"
@@ -113,14 +107,22 @@ export function DocumentsPage() {
                 </option>
               ))}
             </select>
+            <label htmlFor="doc-family-member" className="sr-only">
+              Familjemedlem (valfritt)
+            </label>
             <input
+              id="doc-family-member"
               type="text"
               placeholder="Familjemedlem (valfritt)..."
               value={newDoc.familyMember}
               onChange={(e) => setNewDoc({ ...newDoc, familyMember: e.target.value })}
               className="w-full px-4 py-3 rounded-xl border border-border bg-background min-h-[56px]"
             />
+            <label htmlFor="doc-description" className="sr-only">
+              Beskrivning (valfritt)
+            </label>
             <textarea
+              id="doc-description"
               placeholder="Beskrivning (valfritt)..."
               value={newDoc.description}
               onChange={(e) => setNewDoc({ ...newDoc, description: e.target.value })}

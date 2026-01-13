@@ -1,17 +1,20 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { City } from '@/types';
+import { useData } from '@/contexts/data-context';
+import { attractionsData } from '@/lib/attractions-data';
 import { CitySelector } from '@/components/city-selector';
 import { Card } from '@/components/ui/card';
 import { CheckSquare, Search, FileText, ArrowRight, Sun } from 'lucide-react';
 
 export function OverviewPage() {
   const [selectedCity, setSelectedCity] = useState<City>('las-vegas');
+  const { checklists, documents } = useData();
 
   const quickStats = [
-    { label: 'Checklistor', value: '3', icon: CheckSquare },
-    { label: 'Dokument', value: '5', icon: FileText },
-    { label: 'Attraktioner', value: '18', icon: Search },
+    { label: 'Checklistor', value: String(checklists.length), icon: CheckSquare },
+    { label: 'Dokument', value: String(documents.length), icon: FileText },
+    { label: 'Attraktioner', value: String(attractionsData.length), icon: Search },
   ];
 
   const cityInfo = {

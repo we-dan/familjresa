@@ -1,25 +1,13 @@
 import { useState } from 'react';
 import { Checklist, ChecklistItem } from '@/types';
+import { useData } from '@/contexts/data-context';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { Plus, Trash2, Edit2, Check, X } from 'lucide-react';
 import { getCityLabel } from '@/lib/attractions-data';
 
 export function ChecklistsPage() {
-  const [checklists, setChecklists] = useState<Checklist[]>([
-    {
-      id: '1',
-      title: 'Packlista',
-      description: 'Allt vi behöver packa för resan',
-      city: 'las-vegas',
-      items: [
-        { id: '1-1', text: 'Pass och ID-handlingar', completed: false, createdAt: new Date() },
-        { id: '1-2', text: 'Solglasögon och solkräm', completed: false, createdAt: new Date() },
-      ],
-      createdAt: new Date(),
-      updatedAt: new Date(),
-    },
-  ]);
+  const { checklists, setChecklists } = useData();
 
   const [isCreating, setIsCreating] = useState(false);
   const [newTitle, setNewTitle] = useState('');
@@ -47,6 +35,7 @@ export function ChecklistsPage() {
   };
 
   const handleDeleteChecklist = (id: string) => {
+    if (!window.confirm('Är du säker på att du vill ta bort denna checklista?')) return;
     setChecklists(checklists.filter((c) => c.id !== id));
   };
 
@@ -131,7 +120,11 @@ export function ChecklistsPage() {
         <Card className="p-6 space-y-4 rounded-2xl">
           <h2 className="text-xl font-semibold">Ny checklista</h2>
           <div className="space-y-3">
+            <label htmlFor="checklist-title" className="sr-only">
+              Titel
+            </label>
             <input
+              id="checklist-title"
               type="text"
               placeholder="Titel..."
               value={newTitle}
@@ -139,7 +132,11 @@ export function ChecklistsPage() {
               className="w-full px-4 py-3 rounded-xl border border-border bg-background text-lg min-h-[56px]"
               autoFocus
             />
+            <label htmlFor="checklist-description" className="sr-only">
+              Beskrivning (valfritt)
+            </label>
             <input
+              id="checklist-description"
               type="text"
               placeholder="Beskrivning (valfritt)..."
               value={newDescription}
@@ -299,7 +296,11 @@ export function ChecklistsPage() {
             </div>
 
             <div className="flex gap-2 pt-2">
+              <label htmlFor={`new-item-${checklist.id}`} className="sr-only">
+                Lägg till ny punkt
+              </label>
               <input
+                id={`new-item-${checklist.id}`}
                 type="text"
                 placeholder="Lägg till ny punkt..."
                 value={newItemText[checklist.id] || ''}

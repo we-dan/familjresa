@@ -1,6 +1,7 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 
 import { ThemeProvider } from '@/components/providers/theme';
+import { DataProvider } from '@/contexts/data-context';
 import { Navigation } from '@/components/navigation';
 import { OverviewPage } from '@/pages/overview-page';
 import { ChecklistsPage } from '@/pages/checklists-page';
@@ -20,14 +21,17 @@ export default function App() {
   return (
     <BrowserRouter>
       <ThemeProvider defaultTheme="light" storageKey="family-travel-theme">
-        <Layout>
-          <Routes>
-            <Route path="/" element={<OverviewPage />} />
-            <Route path="/checklists" element={<ChecklistsPage />} />
-            <Route path="/attractions" element={<AttractionsPage />} />
-            <Route path="/documents" element={<DocumentsPage />} />
-          </Routes>
-        </Layout>
+        <DataProvider>
+          <Layout>
+            <Routes>
+              <Route path="/" element={<OverviewPage />} />
+              <Route path="/checklists" element={<ChecklistsPage />} />
+              <Route path="/attractions" element={<AttractionsPage />} />
+              <Route path="/documents" element={<DocumentsPage />} />
+              <Route path="*" element={<Navigate to="/" replace />} />
+            </Routes>
+          </Layout>
+        </DataProvider>
       </ThemeProvider>
     </BrowserRouter>
   );
